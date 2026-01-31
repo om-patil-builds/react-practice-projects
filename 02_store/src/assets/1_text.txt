@@ -1,0 +1,580 @@
+
+// import React, { useState } from 'react';
+// import { 
+//   ShoppingCart, 
+//   Phone, 
+//   MapPin, 
+//   Search, 
+//   X, 
+//   CheckCircle, 
+//   XCircle, 
+//   Plus, 
+//   Minus, 
+//   Trash2, 
+//   MessageCircle,
+//   Sprout,
+//   Package,
+//   ArrowRight
+// } from 'lucide-react';
+
+// // --- Mock Data (No types needed) ---
+// const PRODUCTS = [
+//   // Seeds
+//   { id: 1, name: 'BT Cotton Seeds (BG-II)', category: 'Seeds', price: 740, unit: 'Packet', stock: 50, image: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=400&q=80', description: 'High yield cotton variety, pest resistant.' },
+//   { id: 2, name: 'Hybrid Tomato Seeds', category: 'Seeds', price: 450, unit: '10g', stock: 0, image: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=400&q=80', description: 'Disease tolerant, suitable for kharif season.' },
+//   { id: 3, name: 'Maize Seeds (Monsanto)', category: 'Seeds', price: 1200, unit: 'kg', stock: 25, image: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=400&q=80', description: 'Single cross hybrid, high grain quality.' },
+//   { id: 4, name: 'Black Gram (Urad)', category: 'Seeds', price: 85, unit: 'kg', stock: 100, image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=80', description: 'Certified organic seeds for better yield.' },
+  
+//   // Fertilizers
+//   { id: 5, name: 'Urea (Neem Coated)', category: 'Fertilizers', price: 266, unit: 'Bag', stock: 200, image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=400&q=80', description: 'Essential nitrogen source for leafy growth.' },
+//   { id: 6, name: 'DAP (Di-Ammonium Phosphate)', category: 'Fertilizers', price: 1350, unit: 'Bag', stock: 150, image: '', description: 'High in phosphorus for root development.' },
+//   { id: 7, name: 'Potash (MOP)', category: 'Fertilizers', price: 1400, unit: '50kg', stock: 80, image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=400&q=80', description: 'Improves fruit quality and disease resistance.' },
+//   { id: 8, name: 'NPK 19:19:19', category: 'Fertilizers', price: 350, unit: 'kg', stock: 0, image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=400&q=80', description: 'Balanced nutrition for all crops.' },
+
+//   // Sprayers
+//   { id: 9, name: 'Battery Sprayer 16L', category: 'Sprayers', price: 2400, unit: 'Piece', stock: 15, image: '', description: '12V battery operated, high pressure.' },
+//   { id: 10, name: 'Manual Knapsack 20L', category: 'Sprayers', price: 850, unit: 'Piece', stock: 30, image: '', description: 'Brass nozzle, durable tank.' },
+//   { id: 11, name: 'Foot Sprayer', category: 'Sprayers', price: 1200, unit: 'Piece', stock: 10, image: '', description: 'Double action cylinder, easy to operate.' },
+
+//   //pectiside
+  
+  
+// {
+//     id: 12,
+//     name: 'Imidacloprid 17.8% SL',
+//     category: 'Pesticides',
+//     price: 450,
+//     unit: '250ml',
+//     stock: 50,
+//     image: '',
+//     description: 'Systemic insecticide for sucking pests, whitefly & aphids control.'
+//   },
+//   {
+//     id: 13,
+//     name: 'Glyphosate 41% SL',
+//     category: 'Pesticides',
+//     price: 380,
+//     unit: '1L',
+//     stock: 35,
+//     image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=400&q=80',
+//     description: 'Broad-spectrum systemic herbicide for weed control in non-crop areas.'
+//   },
+//   {
+//     id: 14,
+//     name: 'Mancozeb 75% WP',
+//     category: 'Pesticides',
+//     price: 520,
+//     unit: '500g',
+//     stock: 42,
+//     image: '',
+//     description: 'Contact fungicide effective against blight, rust and leaf spot diseases.'
+//   },
+//   {
+//     id: 15,
+//     name: 'Lambda Cyhalothrin 5% EC',
+//     category: 'Pesticides',
+//     price: 295,
+//     unit: '500ml',
+//     stock: 28,
+//     image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=400&q=80',
+//     description: 'Synthetic pyrethroid for bollworm, stem borer and Diamondback moth.'
+//   },
+//   {
+//     id: 16,
+//     name: 'Chlorpyrifos 20% EC',
+//     category: 'Pesticides',
+//     price: 650,
+//     unit: '1L',
+//     stock: 22,
+//     image: '',
+//     description: 'Broad-spectrum insecticide for soil and foliar application.'
+//   },
+//   //Micronutrients
+//    {
+//     id: 17,
+//     name: 'Chelated Zinc EDTA 12%',
+//     category: 'Micronutrients',
+//     price: 180,
+//     unit: '250g',
+//     stock: 75,
+//     image: '',
+//     description: 'Zinc deficiency corrector for higher yield and enzyme activation.'
+//   },
+//   {
+//     id: 18,
+//     name: 'Chelated Iron EDTA 12%',
+//     category: 'Micronutrients',
+//     price: 165,
+//     unit: '250g',
+//     stock: 60,
+//     image: '',
+//     description: 'Prevents iron chlorosis, promotes chlorophyll formation in plants.'
+//   },
+//   {
+//     id: 19,
+//     name: 'Boron 20% Soluble Powder',
+//     category: 'Micronutrients',
+//     price: 240,
+//     unit: '500g',
+//     stock: 45,
+//     image: '',
+//     description: 'Essential for flowering, fruit setting and pollen tube growth.'
+//   },
+//   {
+//     id: 20,
+//     name: 'Calcium Nitrate Granular',
+//     category: 'Micronutrients',
+//     price: 320,
+//     unit: '1kg',
+//     stock: 38,
+//     image: '',
+//     description: 'Water soluble calcium source for cell wall development and quality produce.'
+//   },
+//   {
+//     id: 21,
+//     name: 'Multi-Micronutrient Mixture (Grade II)',
+//     category: 'Micronutrients',
+//     price: 480,
+//     unit: '5kg',
+//     stock: 30,
+//     image: '',
+//     description: 'Complete blend of Zn, Fe, Cu, Mn, B for balanced plant nutrition.'
+//   }
+
+// ];
+
+// const STORE_INFO = {
+//   name: "LAXMINARAYAN AGRO CENTRE",
+//   owner: "Pradip Patil",
+//   phone: "7666126076",
+//   whatsapp: "7666126076",
+//   address: "Sonavad Road Chh.ShivajiMaharaj Complex Tal-Dharangaon, District Jalgaon, Maharashtra",
+//   hours: "8:00 AM - 8:00 PM (Open 7 Days)"
+// };
+
+// // Categories array for navigation
+// const CATEGORIES = ['All', 'Seeds', 'Fertilizers', 'Sprayers' , 'Pesticides' , 'Micronutrients'];
+
+// export default function KrushiKendraApp() {
+//   const [activeCategory, setActiveCategory] = useState('All');
+//   const [cart, setCart] = useState([]);
+//   const [isCartOpen, setIsCartOpen] = useState(false);
+//   const [searchQuery, setSearchQuery] = useState('');
+//   const [showOrderModal, setShowOrderModal] = useState(false);
+
+//   // Filter products
+//   const filteredProducts = PRODUCTS.filter(p => {
+//     const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
+//     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+//     return matchesCategory && matchesSearch;
+//   });
+
+//   // Cart Logic
+//   const addToCart = (product) => {
+//     if (product.stock === 0) return;
+//     setCart(prev => {
+//       const existing = prev.find(item => item.id === product.id);
+//       if (existing) {
+//         if (existing.cartQty < product.stock) {
+//           return prev.map(item => item.id === product.id ? { ...item, cartQty: item.cartQty + 1 } : item);
+//         }
+//         return prev;
+//       }
+//       return [...prev, { ...product, cartQty: 1 }];
+//     });
+//     setIsCartOpen(true);
+//   };
+
+//   const removeFromCart = (id) => {
+//     setCart(prev => prev.filter(item => item.id !== id));
+//   };
+
+//   const updateQty = (id, delta) => {
+//     setCart(prev => prev.map(item => {
+//       if (item.id === id) {
+//         const newQty = Math.max(1, Math.min(item.stock, item.cartQty + delta));
+//         return { ...item, cartQty: newQty };
+//       }
+//       return item;
+//     }));
+//   };
+
+//   const cartTotal = cart.reduce((sum, item) => sum + (item.price * item.cartQty), 0);
+//   const totalItems = cart.reduce((sum, item) => sum + item.cartQty, 0);
+
+//   const handleCheckout = () => {
+//     setIsCartOpen(false);
+//     setShowOrderModal(true);
+//   };
+
+//   const handleOrderSubmit = (e) => {
+//     e.preventDefault();
+//     alert(`Order Placed Successfully!\n\nWe will contact you shortly at ${STORE_INFO.phone} to confirm the delivery time.`);
+//     setCart([]);
+//     setShowOrderModal(false);
+//     setIsCartOpen(false);
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-stone-50 font-sans text-stone-900 pb-20 md:pb-0">
+//       {/* --- Header --- */}
+//       <header className="sticky top-0 z-40 bg-green-700 text-white shadow-lg">
+//         <div className="max-w-7xl mx-auto px-4 py-3">
+//           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+//             {/* Store Name & Brand */}
+//             <div className="flex items-center gap-3">
+//               <div className="bg-white p-2 rounded-full">
+//                 <Sprout className="w-8 h-8 text-green-700" />
+//               </div>
+//               <div>
+//                 <h1 className="text-xl md:text-2xl font-bold leading-none tracking-tight">{STORE_INFO.name}</h1>
+//                 <p className="text-xs md:text-sm text-green-100 mt-1 flex items-center gap-1">
+//                   <MapPin size={12} /> {STORE_INFO.address}
+//                 </p>
+//               </div>
+//             </div>
+
+//             {/* Search Bar */}
+//             <div className="flex-1 max-w-xl mx-auto w-full md:w-auto">
+//               <div className="relative">
+//                 <input 
+//                   type="text" 
+//                   placeholder="Search seeds, fertilizer..." 
+//                   className="w-full px-4 py-2.5 pl-10 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+//                   value={searchQuery}
+//                   onChange={(e) => setSearchQuery(e.target.value)}
+//                 />
+//                 <Search className="absolute left-3 top-2.5 text-stone-400 w-5 h-5" />
+//               </div>
+//             </div>
+
+//             {/* Quick Contact & Cart */}
+//             <div className="hidden md:flex items-center gap-6">
+//               <div className="text-right">
+//                 <p className="text-xs text-green-200">Need Help? Call Now</p>
+//                 <p className="font-bold text-lg flex items-center justify-end gap-2">
+//                   <Phone size={18} /> {STORE_INFO.phone}
+//                 </p>
+//               </div>
+//               <button 
+//                 onClick={() => setIsCartOpen(true)}
+//                 className="relative bg-yellow-400 text-green-900 p-3 rounded-full hover:bg-yellow-300 transition-colors shadow-md"
+//               >
+//                 <ShoppingCart size={24} />
+//                 {totalItems > 0 && (
+//                   <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
+//                     {totalItems}
+//                   </span>
+//                 )}
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </header>
+
+//       {/* --- Mobile Action Bar --- */}
+//       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-stone-200 z-30 px-4 py-2 flex justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+//         <div className="flex flex-col">
+//           <span className="text-xs text-stone-500">Store Owner</span>
+//           <a href={`tel:${STORE_INFO.phone}`} className="font-bold text-green-700 flex items-center gap-1">
+//             <Phone size={16} /> Call Now
+//           </a>
+//         </div>
+//         <button 
+//           onClick={() => setIsCartOpen(true)}
+//           className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg font-bold active:bg-green-700"
+//         >
+//           <ShoppingCart size={18} />
+//           Cart ({totalItems})
+//         </button>
+//       </div>
+
+//       {/* --- Category Navigation --- */}
+//       <nav className="bg-white border-b border-stone-200 sticky top-16 md:top-18 z-30 shadow-sm">
+//         <div className="max-w-7xl mx-auto px-4 overflow-x-auto no-scrollbar">
+//           <div className="flex gap-2 py-3 min-w-max">
+//             {CATEGORIES.map((cat) => (
+//               <button
+//                 key={cat}
+//                 onClick={() => setActiveCategory(cat)}
+//                 className={`px-6 py-2 rounded-full font-bold text-sm md:text-base transition-all whitespace-nowrap ${
+//                   activeCategory === cat 
+//                     ? 'bg-green-600 text-white shadow-md transform scale-105' 
+//                     : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+//                 }`}
+//               >
+//                 {cat}
+//               </button>
+//             ))}
+//           </div>
+//         </div>
+//       </nav>
+
+//       {/* --- Main Content --- */}
+//       <main className="max-w-7xl mx-auto px-4 py-6">
+//         {/* Stats / Info Banner */}
+//         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+//           <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 flex items-center gap-3">
+//             <div className="bg-blue-100 p-3 rounded-full text-blue-600">
+//               <CheckCircle size={24} />
+//             </div>
+//             <div>
+//               <h3 className="font-bold text-blue-900">Quality Certified</h3>
+//               <p className="text-xs text-blue-700">Govt. approved seeds & pesticides</p>
+//             </div>
+//           </div>
+//           <div className="bg-orange-50 p-4 rounded-xl border border-orange-100 flex items-center gap-3">
+//             <div className="bg-orange-100 p-3 rounded-full text-orange-600">
+//               <Package size={24} />
+//             </div>
+//             <div>
+//               <h3 className="font-bold text-orange-900">Fast Delivery</h3>
+//               <p className="text-xs text-orange-700">Same day delivery in village limits</p>
+//             </div>
+//           </div>
+//           <div className="bg-green-50 p-4 rounded-xl border border-green-100 flex items-center gap-3">
+//             <div className="bg-green-100 p-3 rounded-full text-green-600">
+//               <Phone size={24} />
+//             </div>
+//             <div>
+//               <h3 className="font-bold text-green-900">Expert Advice</h3>
+//               <p className="text-xs text-green-700">Free consultancy with {STORE_INFO.owner}</p>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Product Grid */}
+//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+//           {filteredProducts.map(product => (
+//             <div key={product.id} className="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+//               {/* Image Section */}
+//               <div className="relative h-48 bg-stone-100">
+//                 <img 
+//                   src={product.image} 
+//                   alt={product.name} 
+//                   className={`w-full h-full object-cover ${product.stock === 0 ? 'opacity-50 grayscale' : ''}`}
+//                   onError={(e) => {
+//                     e.target.src = 'https://via.placeholder.com/400x300?text=Krushi+Kendra';
+//                   }}
+//                 />
+//                 {product.stock === 0 && (
+//                   <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[1px]">
+//                     <span className="bg-red-600 text-white px-4 py-1 rounded-full font-bold text-sm shadow-lg transform -rotate-12">
+//                       OUT OF STOCK
+//                     </span>
+//                   </div>
+//                 )}
+//                 {product.stock > 0 && product.stock < 10 && (
+//                   <div className="absolute top-2 left-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded">
+//                     Only {product.stock} left
+//                   </div>
+//                 )}
+//               </div>
+
+//               {/* Content Section */}
+//               <div className="p-4 flex-1 flex flex-col">
+//                 <div className="flex justify-between items-start mb-1">
+//                   <span className="text-xs font-bold text-stone-500 uppercase tracking-wider">{product.category}</span>
+//                   <span className="text-xs text-stone-400">{product.unit}</span>
+//                 </div>
+//                 <h3 className="font-bold text-lg text-stone-900 mb-1 leading-tight">{product.name}</h3>
+//                 <p className="text-sm text-stone-500 mb-4 line-clamp-2">{product.description}</p>
+                
+//                 <div className="mt-auto flex items-end justify-between">
+//                   <div>
+//                     <p className="text-2xl font-bold text-green-700">₹{product.price}</p>
+//                     <p className={`text-xs font-medium flex items-center gap-1 ${product.stock > 0 ? 'text-green-600' : 'text-red-500'}`}>
+//                       {product.stock > 0 ? <CheckCircle size={12} /> : <XCircle size={12} />}
+//                       {product.stock > 0 ? 'In Stock' : 'Not Available'}
+//                     </p>
+//                   </div>
+//                   <button 
+//                     onClick={() => addToCart(product)}
+//                     disabled={product.stock === 0}
+//                     className={`px-4 py-2 rounded-lg font-bold text-sm transition-colors flex items-center gap-2 ${
+//                       product.stock > 0 
+//                         ? 'bg-green-600 text-white hover:bg-green-700 active:bg-green-800' 
+//                         : 'bg-stone-200 text-stone-400 cursor-not-allowed'
+//                     }`}
+//                   >
+//                     <Plus size={16} />
+//                     Add
+//                   </button>
+//                 </div>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+
+//         {filteredProducts.length === 0 && (
+//           <div className="text-center py-20">
+//             <div className="bg-stone-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4">
+//               <Search size={32} className="text-stone-400" />
+//             </div>
+//             <h3 className="text-xl font-bold text-stone-700">No products found</h3>
+//             <p className="text-stone-500">Try changing your search or category</p>
+//           </div>
+//         )}
+//       </main>
+
+//       {/* --- Cart Sidebar --- */}
+//       {isCartOpen && (
+//         <div className="fixed inset-0 z-50 overflow-hidden">
+//           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsCartOpen(false)} />
+//           <div className="absolute right-0 top-0 bottom-0 w-full md:w-[450px] bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+//             <div className="bg-green-700 text-white p-4 flex items-center justify-between">
+//               <h2 className="text-xl font-bold flex items-center gap-2">
+//                 <ShoppingCart /> My Cart ({totalItems} items)
+//               </h2>
+//               <button onClick={() => setIsCartOpen(false)} className="p-2 hover:bg-white/20 rounded-full">
+//                 <X size={24} />
+//               </button>
+//             </div>
+
+//             <div className="flex-1 overflow-y-auto p-4 space-y-4">
+//               {cart.length === 0 ? (
+//                 <div className="text-center py-20">
+//                   <ShoppingCart size={64} className="text-stone-300 mx-auto mb-4" />
+//                   <p className="text-stone-500 font-medium">Your cart is empty</p>
+//                   <button 
+//                     onClick={() => setIsCartOpen(false)} 
+//                     className="mt-4 text-green-600 font-bold hover:underline"
+//                   >
+//                     Start Shopping
+//                   </button>
+//                 </div>
+//               ) : (
+//                 cart.map(item => (
+//                   <div key={item.id} className="flex gap-4 bg-stone-50 p-3 rounded-lg border border-stone-200">
+//                     <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded-md bg-white" />
+//                     <div className="flex-1">
+//                       <h4 className="font-bold text-stone-900 line-clamp-1">{item.name}</h4>
+//                       <p className="text-sm text-stone-500 mb-2">{item.unit}</p>
+//                       <div className="flex items-center justify-between">
+//                         <div className="flex items-center gap-3 bg-white rounded-lg border border-stone-300 p-1">
+//                           <button 
+//                             onClick={() => updateQty(item.id, -1)} 
+//                             className="p-1 hover:bg-stone-100 rounded disabled:opacity-50"
+//                             disabled={item.cartQty <= 1}
+//                           >
+//                             <Minus size={14} />
+//                           </button>
+//                           <span className="font-bold w-4 text-center text-sm">{item.cartQty}</span>
+//                           <button 
+//                             onClick={() => updateQty(item.id, 1)} 
+//                             className="p-1 hover:bg-stone-100 rounded disabled:opacity-50"
+//                             disabled={item.cartQty >= item.stock}
+//                           >
+//                             <Plus size={14} />
+//                           </button>
+//                         </div>
+//                         <div className="text-right">
+//                           <p className="font-bold text-green-700">₹{item.price * item.cartQty}</p>
+//                           <button 
+//                             onClick={() => removeFromCart(item.id)}
+//                             className="text-xs text-red-500 flex items-center gap-1 mt-1 hover:underline"
+//                           >
+//                             <Trash2 size={12} /> Remove
+//                           </button>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 ))
+//               )}
+//             </div>
+
+//             {cart.length > 0 && (
+//               <div className="p-4 border-t border-stone-200 bg-stone-50">
+//                 <div className="flex justify-between mb-4 text-lg font-bold text-stone-900">
+//                   <span>Total Amount</span>
+//                   <span>₹{cartTotal}</span>
+//                 </div>
+//                 <button 
+//                   onClick={handleCheckout}
+//                   className="w-full bg-green-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-green-700 active:bg-green-800 shadow-lg flex items-center justify-center gap-2"
+//                 >
+//                   Place Order <ArrowRight size={20} />
+//                 </button>
+//                 <p className="text-center text-xs text-stone-500 mt-2">
+//                   Cash on Delivery available. Free delivery on orders above ₹2000.
+//                 </p>
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       )}
+
+//       {/* --- Order Modal --- */}
+//       {showOrderModal && (
+//         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+//           <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
+//             <div className="bg-green-600 p-4 text-white flex justify-between items-center">
+//               <h3 className="font-bold text-lg">Confirm Booking</h3>
+//               <button onClick={() => setShowOrderModal(false)} className="hover:bg-white/20 rounded-full p-1">
+//                 <X size={20} />
+//               </button>
+//             </div>
+            
+//             <div className="p-6">
+//               <div className="bg-green-50 p-4 rounded-lg mb-6 border border-green-100">
+//                 <p className="text-sm text-green-800 font-medium mb-2">Booking Summary:</p>
+//                 <div className="flex justify-between mb-1">
+//                   <span className="text-stone-600">Total Items:</span>
+//                   <span className="font-bold">{totalItems}</span>
+//                 </div>
+//                 <div className="flex justify-between text-lg">
+//                   <span className="font-bold text-stone-900">Total Amount:</span>
+//                   <span className="font-bold text-green-700">₹{cartTotal}</span>
+//                 </div>
+//               </div>
+
+//               <form className="space-y-4" onSubmit={handleOrderSubmit}>
+//                 <div>
+//                   <label className="block text-sm font-bold text-stone-700 mb-1">Your Name</label>
+//                   <input required type="text" className="w-full border border-stone-300 rounded-lg p-2.5 focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none" placeholder="Enter full name" />
+//                 </div>
+//                 <div>
+//                   <label className="block text-sm font-bold text-stone-700 mb-1">Mobile Number</label>
+//                   <input required type="tel" pattern="[0-9]{10}" className="w-full border border-stone-300 rounded-lg p-2.5 focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none" placeholder="10 digit mobile number" />
+//                 </div>
+//                 <div>
+//                   <label className="block text-sm font-bold text-stone-700 mb-1">Village / Location</label>
+//                   <textarea required rows={2} className="w-full border border-stone-300 rounded-lg p-2.5 focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none" placeholder="Enter your village and nearby landmark" />
+//                 </div>
+//                 <div>
+//                   <label className="block text-sm font-bold text-stone-700 mb-1">Payment Mode</label>
+//                   <div className="grid grid-cols-2 gap-3">
+//                     <label className="border-2 border-green-600 bg-green-50 p-3 rounded-lg flex items-center gap-2 cursor-pointer">
+//                       <input type="radio" name="payment" defaultChecked className="text-green-600 w-4 h-4" />
+//                       <span className="font-bold text-green-900">Cash on Delivery</span>
+//                     </label>
+//                     <label className="border-2 border-stone-200 p-3 rounded-lg flex items-center gap-2 cursor-pointer opacity-50">
+//                       <input type="radio" name="payment" disabled className="w-4 h-4" />
+//                       <span className="font-bold text-stone-500">UPI (Soon)</span>
+//                     </label>
+//                   </div>
+//                 </div>
+
+//                 <button type="submit" className="w-full bg-green-600 text-white font-bold py-3 rounded-xl hover:bg-green-700 transition-colors mt-4 shadow-lg">
+//                   Confirm Booking
+//                 </button>
+//               </form>
+//             </div>
+//           </div>
+//         </div>
+//       )}
+
+//       {/* --- WhatsApp Floating Button --- */}
+//       <a 
+//         href={`https://wa.me/${STORE_INFO.whatsapp}?text=Hello%20${encodeURIComponent(STORE_INFO.name)},%20I%20want%20to%20inquire%20about%20your%20products.`}
+//         target="_blank"
+//         rel="noopener noreferrer"
+//         className="fixed bottom-20 md:bottom-8 right-4 bg-[#25D366] text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform z-30 flex items-center gap-2 pr-4"
+//       >
+//         <MessageCircle size={24} fill="currentColor" />
+//         <span className="font-bold hidden md:inline">Chat on WhatsApp</span>
+//       </a>
+//     </div>
+//   );
+// }
