@@ -177,7 +177,7 @@ export const PRODUCTS = [
   },
   {
     id: 16,
-    name: "Chlorpyrifos 20% EC Pesticides",
+    name: "Chlorpyrifos 20% EC",
     category: "Pesticides",
     price: 650,
     unit: "1L",
@@ -190,7 +190,7 @@ export const PRODUCTS = [
   // Micronutrients
   {
     id: 17,
-    name: "Chelated Zinc EDTA 12% Pesticides",
+    name: "Chelated Zinc EDTA 12%",
     category: "Micronutrients",
     price: 180,
     unit: "250g",
