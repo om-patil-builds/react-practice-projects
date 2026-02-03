@@ -69,12 +69,15 @@ useEffect(() => {
 
 
 
-const  pdfGenerator = (customer, cart, cartTotal, STORE_INFO) => {
+const  pdfGenerator = async() => {
 
 
   const element = document.createElement("div");
-  element.innerHTML = invoiceHTML;
+  
   document.body.appendChild(element);
+  const root = createRoot(element)
+
+
 
   html2pdf()
     .from(element)

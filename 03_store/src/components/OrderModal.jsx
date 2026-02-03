@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import html2pdf from "html2pdf.js";
 import { X } from "lucide-react";
+import OrderInvoiceTemplate from "./OrderInvoiceTemplate";
 
 const OrderModal = ({
   cart,
@@ -8,7 +9,6 @@ const OrderModal = ({
   totalItems,
   handleOrderSubmit,
   setShowOrderModal,
-  handleDownloadPDF
   showOrderModal,
 }) => {
   const [customer, setCustomer] = useState({
@@ -42,57 +42,67 @@ const OrderModal = ({
   };
 
   return (
-    <div className="fixed z-100 inset-0 flex items-center justify-center bg-black/70 backdrop-blur-md h-screen w-screen">
-      {/* Customer Info Inputs */}
-     <div className="bg-white p-8 relative h-auto w-full md:w-[50vw] flex flex-col gap-4 md:w-80 rounded-2xl">
-        <div className="flex flex-col gap-5">
-        <input
-          type="text"
-          placeholder="Customer Name"
-          value={customer.name}
-          onChange={(e) => setCustomer({ ...customer, name: e.target.value })}
-          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
-          required
-        />
+    <>
+      <div className="fixed z-100 inset-0 flex items-center justify-center bg-black/70 backdrop-blur-md h-screen w-screen">
+        {/* Customer Info Inputs */}
+        <div className="bg-white p-8 relative h-auto w-full md:w-[50vw] flex flex-col gap-4 md:w-80 rounded-2xl">
+          <div className="flex flex-col gap-5">
+            <input
+              type="text"
+              placeholder="Customer Name"
+              value={customer.name}
+              onChange={(e) => setCustomer({ ...customer, name: e.target.value })}
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
+              required
+            />
 
-        <input
-          type="tel"
-          placeholder="Mobile Number"
-          value={customer.phone}
-          onChange={(e) => setCustomer({ ...customer, phone: e.target.value })}
-          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
-          required
-        />
+            <input
+              type="tel"
+              placeholder="Mobile Number"
+              value={customer.phone}
+              onChange={(e) => setCustomer({ ...customer, phone: e.target.value })}
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
+              required
+            />
 
-        <input
-          type="text"
-          placeholder="Village Name"
-          value={customer.village}
-          onChange={(e) =>
-            setCustomer({ ...customer, village: e.target.value })
-          }
-          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
-          required
-        />
+            <input
+              type="text"
+              placeholder="Village Name"
+              value={customer.village}
+              onChange={(e) =>
+                setCustomer({ ...customer, village: e.target.value })
+              }
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
+              required
+            />
+          </div>
+
+          <button
+            type="button"
+            onClick={handleDownloadPDF}
+            disabled={!customer.name || cart.length === 0}
+            className="flex-1 bg-green-600 text-white py-6 rounded-xl font-bold hover:bg-green-700 active:bg-green-800 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-green-600"
+          >
+            Download Invoice PDF
+          </button>
+
+          <div
+            className="absolute top-2 right-2 bg-black/20 text-white hover:text-amber-100 cursor-pointer"
+            onClick={() => setShowOrderModal(false)}
+          >
+            <X size={20} />
+          </div>
+        </div>
       </div>
 
-      <button
-        type="button"
-        onClick={handleDownloadPDF}
-        disabled={!customer.name || cart.length === 0}
-        className="flex-1 bg-green-600 text-white py-6 rounded-xl font-bold hover:bg-green-700 active:bg-green-800 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-green-600"
-      >
-        Download Invoice PDF
-      </button>
-
-      <div
-        className="absolute top-2 right-2 bg-black/20 text-white hover:text-amber-100"
-        onClick={() => setShowOrderModal(false)}
-      >
-        <X size={20} />
-      </div>
-     </div>
-    </div>
+      {/* Hidden Invoice Template for PDF Generation */}
+      <OrderInvoiceTemplate
+        customer={customer}
+        cart={cart}
+        cartTotal={cartTotal}
+        totalItems={totalItems}
+      />
+    </>
   );
 };
 

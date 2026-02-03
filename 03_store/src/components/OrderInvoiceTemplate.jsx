@@ -6,67 +6,274 @@ export default function OrderInvoiceTemplate({
   cartTotal,
   totalItems,
 }) {
+  const styles = {
+    container: {
+      display: "none",
+      backgroundColor: "#ffffff",
+      padding: "32px",
+      minHeight: "297mm",
+      width: "210mm",
+      margin: "0 auto",
+      fontFamily: "Arial, sans-serif",
+    },
+    header: {
+      textAlign: "center",
+      borderBottom: "4px solid #059669",
+      paddingBottom: "16px",
+      marginBottom: "24px",
+    },
+    headerTitle: {
+      fontSize: "30px",
+      fontWeight: "800",
+      color: "#065f46",
+      letterSpacing: "0.025em",
+      textTransform: "uppercase",
+      marginBottom: "4px",
+    },
+    headerSubtitle: {
+      fontSize: "18px",
+      color: "#4b5563",
+      fontWeight: "500",
+    },
+    headerTagline: {
+      fontSize: "12px",
+      color: "#6b7280",
+      marginTop: "4px",
+    },
+    billInfo: {
+      display: "flex",
+      justifyContent: "space-between",
+      marginBottom: "24px",
+      backgroundColor: "#f9fafb",
+      padding: "16px",
+      borderRadius: "8px",
+    },
+    billInfoLeft: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "4px",
+    },
+    billInfoRight: {
+      textAlign: "right",
+      display: "flex",
+      flexDirection: "column",
+      gap: "4px",
+    },
+    billToTitle: {
+      fontSize: "14px",
+      fontWeight: "700",
+      color: "#374151",
+      textTransform: "uppercase",
+      letterSpacing: "0.05em",
+      marginBottom: "8px",
+    },
+    billText: {
+      color: "#1f2937",
+      fontSize: "14px",
+    },
+    billLabel: {
+      fontWeight: "600",
+    },
+    table: {
+      width: "100%",
+      borderCollapse: "collapse",
+      marginBottom: "24px",
+    },
+    tableHeaderRow: {
+      backgroundColor: "#059669",
+      color: "#ffffff",
+    },
+    tableHeader: {
+      padding: "12px 16px",
+      fontSize: "14px",
+      fontWeight: "700",
+      textTransform: "uppercase",
+      letterSpacing: "0.05em",
+      border: "1px solid #047857",
+    },
+    tableHeaderLeft: {
+      textAlign: "left",
+    },
+    tableHeaderCenter: {
+      textAlign: "center",
+    },
+    tableHeaderRight: {
+      textAlign: "right",
+    },
+    tableRowEven: {
+      backgroundColor: "#ffffff",
+    },
+    tableRowOdd: {
+      backgroundColor: "#f9fafb",
+    },
+    tableCell: {
+      padding: "12px 16px",
+      fontSize: "14px",
+      color: "#1f2937",
+      border: "1px solid #d1d5db",
+    },
+    tableCellCenter: {
+      textAlign: "center",
+    },
+    tableCellRight: {
+      textAlign: "right",
+      fontWeight: "600",
+    },
+    tableCellMedium: {
+      fontWeight: "500",
+    },
+    totalSection: {
+      display: "flex",
+      justifyContent: "flex-end",
+      marginBottom: "32px",
+    },
+    totalBox: {
+      backgroundColor: "#f0fdf4",
+      border: "2px solid #bbf7d0",
+      borderRadius: "8px",
+      padding: "16px",
+      width: "256px",
+    },
+    totalRow: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: "8px",
+    },
+    totalLabel: {
+      fontSize: "14px",
+      color: "#4b5563",
+    },
+    totalValue: {
+      fontWeight: "700",
+      color: "#1f2937",
+    },
+    grandTotalRow: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      borderTop: "1px solid #86efac",
+      paddingTop: "8px",
+    },
+    grandTotalLabel: {
+      fontSize: "18px",
+      fontWeight: "700",
+      color: "#065f46",
+    },
+    grandTotalValue: {
+      fontSize: "20px",
+      fontWeight: "800",
+      color: "#065f46",
+    },
+    footer: {
+      marginTop: "auto",
+      paddingTop: "24px",
+      borderTop: "2px solid #059669",
+    },
+    footerContent: {
+      display: "flex",
+      justifyContent: "space-between",
+      fontSize: "12px",
+      color: "#4b5563",
+    },
+    footerLeft: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "4px",
+    },
+    footerRight: {
+      textAlign: "right",
+      display: "flex",
+      flexDirection: "column",
+      gap: "4px",
+    },
+    footerBold: {
+      fontWeight: "700",
+      color: "#1f2937",
+      marginBottom: "4px",
+    },
+    footerSmall: {
+      fontSize: "11px",
+      color: "#6b7280",
+      marginTop: "8px",
+    },
+  };
+
   return (
     <>
       {/* Invoice hidden for PDF */}
-      <div
-        id="invoice"
-        style={{ display: "none" }}
-        className="bg-white p-8 min-h-[297mm] w-[210mm] mx-auto font-sans"
-      >
+      <div id="invoice" style={styles.container}>
         {/* Header Section */}
-        <div className="text-center border-b-4 border-green-600 pb-4 mb-6">
-          <h1 className="text-3xl font-extrabold text-green-800 tracking-tight uppercase mb-1">
-            Laxminarayan Agro Centre
-          </h1>
-          <p className="text-lg text-gray-600 font-medium">Dharngaon</p>
-          <p className="text-xs text-gray-500 mt-1">
-            Quality Agricultural Products
-          </p>
+        <div style={styles.header}>
+          <h1 style={styles.headerTitle}>Laxminarayan Agro Centre</h1>
+          <p style={styles.headerSubtitle}>Dharngaon</p>
+          <p style={styles.headerTagline}>Quality Agricultural Products</p>
         </div>
 
         {/* Bill Info */}
-        <div className="flex justify-between items-start mb-6 bg-gray-50 p-4 rounded-lg">
-          <div className="space-y-1">
-            <h3 className="text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">
-              Bill To:
-            </h3>
-            <p className="text-gray-800">
-              <span className="font-semibold">Name:</span>{" "}
+        <div style={styles.billInfo}>
+          <div style={styles.billInfoLeft}>
+            <h3 style={styles.billToTitle}>Bill To:</h3>
+            <p style={styles.billText}>
+              <span style={styles.billLabel}>Name:</span>{" "}
               {customer.name || "N/A"}
             </p>
-            <p className="text-gray-800">
-              <span className="font-semibold">Village:</span>{" "}
+            <p style={styles.billText}>
+              <span style={styles.billLabel}>Village:</span>{" "}
               {customer.village || "N/A"}
             </p>
           </div>
-          <div className="text-right space-y-1">
-            <p className="text-sm text-gray-600">
-              <span className="font-semibold">Date:</span>{" "}
+          <div style={styles.billInfoRight}>
+            <p style={styles.billText}>
+              <span style={styles.billLabel}>Date:</span>{" "}
               {new Date().toLocaleDateString("en-IN")}
             </p>
-            <p className="text-gray-800">
-              <span className="font-semibold">Contact:</span>{" "}
+            <p style={styles.billText}>
+              <span style={styles.billLabel}>Contact:</span>{" "}
               {customer.phone || "N/A"}
             </p>
           </div>
         </div>
 
         {/* Products Table */}
-        <div className="mb-6">
-          <table className="w-full border-collapse">
+        <div>
+          <table style={styles.table}>
             <thead>
-              <tr className="bg-green-600 text-white">
-                <th className="py-3 px-4 text-left text-sm font-bold uppercase tracking-wider border border-green-700 w-[40%]">
+              <tr style={styles.tableHeaderRow}>
+                <th
+                  style={{
+                    ...styles.tableHeader,
+                    ...styles.tableHeaderLeft,
+                    width: "40%",
+                  }}
+                >
                   Product Name
                 </th>
-                <th className="py-3 px-4 text-center text-sm font-bold uppercase tracking-wider border border-green-700 w-[15%]">
+                <th
+                  style={{
+                    ...styles.tableHeader,
+                    ...styles.tableHeaderCenter,
+                    width: "15%",
+                  }}
+                >
                   Qty
                 </th>
-                <th className="py-3 px-4 text-center text-sm font-bold uppercase tracking-wider border border-green-700 w-[20%]">
+                <th
+                  style={{
+                    ...styles.tableHeader,
+                    ...styles.tableHeaderCenter,
+                    width: "20%",
+                  }}
+                >
                   Weight/Unit
                 </th>
-                <th className="py-3 px-4 text-right text-sm font-bold uppercase tracking-wider border border-green-700 w-[25%]">
+                <th
+                  style={{
+                    ...styles.tableHeader,
+                    ...styles.tableHeaderRight,
+                    width: "25%",
+                  }}
+                >
                   Amount (₹)
                 </th>
               </tr>
@@ -75,18 +282,24 @@ export default function OrderInvoiceTemplate({
               {cart.map((item, index) => (
                 <tr
                   key={item.id}
-                  className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                  style={
+                    index % 2 === 0 ? styles.tableRowEven : styles.tableRowOdd
+                  }
                 >
-                  <td className="py-3 px-4 text-sm text-gray-800 border border-gray-300 font-medium">
+                  <td style={{ ...styles.tableCell, ...styles.tableCellMedium }}>
                     {item.name}
                   </td>
-                  <td className="py-3 px-4 text-sm text-gray-800 border border-gray-300 text-center">
+                  <td
+                    style={{ ...styles.tableCell, ...styles.tableCellCenter }}
+                  >
                     {item.cartQty}
                   </td>
-                  <td className="py-3 px-4 text-sm text-gray-800 border border-gray-300 text-center">
+                  <td
+                    style={{ ...styles.tableCell, ...styles.tableCellCenter }}
+                  >
                     {item.weight || item.unit || "-"}
                   </td>
-                  <td className="py-3 px-4 text-sm text-gray-800 border border-gray-300 text-right font-semibold">
+                  <td style={{ ...styles.tableCell, ...styles.tableCellRight }}>
                     ₹{(item.price * item.cartQty).toLocaleString("en-IN")}
                   </td>
                 </tr>
@@ -96,17 +309,15 @@ export default function OrderInvoiceTemplate({
         </div>
 
         {/* Total Section */}
-        <div className="flex justify-end mb-8">
-          <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4 w-64">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-gray-600">Total Items:</span>
-              <span className="font-bold text-gray-800">{totalItems}</span>
+        <div style={styles.totalSection}>
+          <div style={styles.totalBox}>
+            <div style={styles.totalRow}>
+              <span style={styles.totalLabel}>Total Items:</span>
+              <span style={styles.totalValue}>{totalItems}</span>
             </div>
-            <div className="flex justify-between items-center border-t border-green-300 pt-2">
-              <span className="text-lg font-bold text-green-800">
-                Grand Total:
-              </span>
-              <span className="text-xl font-extrabold text-green-800">
+            <div style={styles.grandTotalRow}>
+              <span style={styles.grandTotalLabel}>Grand Total:</span>
+              <span style={styles.grandTotalValue}>
                 ₹{cartTotal.toLocaleString("en-IN")}
               </span>
             </div>
@@ -114,19 +325,20 @@ export default function OrderInvoiceTemplate({
         </div>
 
         {/* Footer */}
-        <div className="mt-auto pt-6 border-t-2 border-green-600">
-          <div className="flex justify-between items-center text-xs text-gray-600">
-            <div>
-              <p className="font-bold text-gray-800 mb-1">
-                Proprietor: [Owner Name]
-              </p>
+        <div style={styles.footer}>
+          <div style={styles.footerContent}>
+            <div style={styles.footerLeft}>
+              <p style={styles.footerBold}>Proprietor: Pradip Patil</p>
               <p>Thank you for your business!</p>
+              <p style={styles.footerSmall}>Quality Agricultural Products</p>
             </div>
-            <div className="text-right">
-              <p className="font-bold text-gray-800 mb-1">
-                Contact: +91 XXXXX XXXXX
+            <div style={styles.footerRight}>
+              <p style={styles.footerBold}>Contact: +91 7666126076</p>
+              <p>Sonavad Road, Chh. Shivaji Maharaj Complex</p>
+              <p>Tal-Dharangaon, District Jalgaon, Maharashtra</p>
+              <p style={{ ...styles.footerSmall, marginTop: "4px" }}>
+                Open 7 Days: 8:00 AM - 8:00 PM
               </p>
-              <p>Laxminarayan Agro Centre, Dharngaon</p>
             </div>
           </div>
         </div>
