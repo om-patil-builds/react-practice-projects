@@ -182,7 +182,7 @@ In `OrderModal.jsx`:
 ```javascript
 jsPDF: { 
   unit: "mm", 
-  format: "letter",  // Change from "a4" to "letter"
+  format: "letter",
   orientation: "portrait" 
 }
 ```
