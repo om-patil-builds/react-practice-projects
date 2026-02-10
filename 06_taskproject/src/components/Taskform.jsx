@@ -1,25 +1,23 @@
 import React, { useState } from 'react'
 
-const Taskform = ({addtask}) => {
-    
- const [task, setTask] = useState('')
+const Taskform = ({ addtask }) => {
+  const [task, setTask] = useState('')
 
-    const submitHandler = (e)=>{
-        e.preventDefault()
-        addtask(task)
-        setTask('')
-        
-    }
+  const submitHandler = (e) => {
+    e.preventDefault()
+    addtask(task)
+    setTask('')
+  }
+
   return (
-    <div>
-        <form onSubmit={submitHandler}>
-            <input type="text" placeholder='Enter Your Task' value={task} onChange={(e)=>{
-                setTask(e.target.value)
-            }}/>
-            <button>AddTask</button>
-        </form>
-
-    </div>
+    <form onSubmit={submitHandler}>
+      <input
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+        placeholder="Enter task"
+      />
+      <button>Add</button>
+    </form>
   )
 }
 

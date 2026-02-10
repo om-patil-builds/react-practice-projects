@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const Tasklist = ({tasklist}) => {
+const Tasklist = ({ tasklist, deleteTask }) => {
   return (
     <div>
-   {tasklist.map((elem,idx)=>(
-    <div key={idx}>{elem}</div>
-   ))}
+      {tasklist.map(task => (
+        <div key={task.id}>
+          {task.text}
+          <button onClick={() => deleteTask(task.id)}>❌</button>
+        </div>
+      ))}
     </div>
   )
 }
